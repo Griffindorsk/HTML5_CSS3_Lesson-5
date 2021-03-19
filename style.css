@@ -1,14 +1,28 @@
-/*
-необходимо подключить
-1. normalize
-2. стиль для многоколоночной компоновки
-4. стиль для форм (если есть на странице)
-*/
+@font-face {
+    font-family: 'Ranchers', sans-serif;
+    src: url(fonts/Ranchers-Regular.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+ @font-face {
+    font-family: 'Oswald', sans-serif;
+    src: url(/fonts/Oswald/static/Oswald-SemiBold.ttf);
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FontAwesome', sans-serif;
+    src: url(fonts/font_awesome/fonts/fontawesome-webfont.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
 
 /* форматирование 1-го слайдера (начало) */
 .scene_1 {
     position: absolute;
-    width: 97vw;
+    width: inherit;
+    max-width: inherit;
     height: 100vh;
 }
 .scene_1 input {
@@ -17,26 +31,26 @@
 .scene_1_backstage {
     height: inherit;
     width: inherit;
+    max-width: inherit;
     background-color: rgb(248, 251, 252);
     position: relative;
     overflow: hidden;
 }
 .scene_1_stage {
     height: inherit;
-    width: 100%;
+    width: inherit;
+    max-width: inherit;
     position: absolute;
     background-position: top;
     background-size: 100%;
     background-repeat: no-repeat;
-    transform: scale(2);
+    transform: scale(0);
     z-index: -1;
     opacity: 0;
     transition: transform ease-in-out 1s, opacity ease-in-out 1.5s;
 }
 .scene_1_slide1 {
     background-image: url(images/slider1.jpg);
-    width: 97vw;
-    margin: 0 auto;
 }
 .scene_1_slide2 {
     background-image: url(images/slider2.jpg);
@@ -107,39 +121,29 @@
 }
 .background_video {
     position: absolute;
+    width: inherit;
+    max-width: inherit;
     height: 100vh;
 }
 .background_video video {
-    width: 97vw;
-    height: 100vh;
+    width: inherit;
+    max-width: inherit;
 }
 .videotext {
     position: relative;
-    left: 50%;
-    top: 50%;
-    font-size: 2rem;
+    left: 20%;
+    top: 20%;
+    font-size: 1rem;
     font-weight: 900;
 }
 /* форматирование фоновой видеопрезентации (конец) */
 
-@font-face {
-    font-family: 'Ranchers', sans-serif;
-    src: url(fonts/Ranchers-Regular.ttf);
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'FontAwesome', sans-serif;
-    src: url(fonts/font_awesome/fonts/fontawesome-webfont.ttf);
-    font-weight: normal;
-    font-style: normal;
-}
 .main_search {
     display: flex;
     width: 200px;
     height: 24px;
     margin: 4px;
+    padding-right: 30px;
 }
 .main_search input {
     align-items: center;
@@ -158,7 +162,10 @@
   font-size: 16px;
   color: #F9F0DA;
 }
-
+.centerline {
+    display: flex;
+    justify-content: center;
+}
 .frame_body {
     min-width: 320px;
     max-width: 1260px;
@@ -168,20 +175,27 @@
 }
 .frame_main {
     width: 97vw;
+    max-width: inherit;
     margin: 0 auto;
     flex-grow: 1;
 }
 /* верхнее меню (начало) */
 .top {
     position: relative;
-    width: 97vw;
+    width: inherit;
+    max-width: inherit;
     height: 100vh;
     margin: 0 auto;
     display: flex;
     /* background-image: url('images/menu_background.jpg'); */
 }
 .top_logo {
-
+    margin-top: 1vh;
+}
+.atom:hover {
+    transform-origin: 50% 50%;
+    transform: rotate(360deg);
+    transition: all 4s;
 }
 .top_other {
     display: flex;
@@ -195,15 +209,19 @@
 }
 
 .mobile_nav {
-    display: flex;
-    /* justify-content: space-between; */
+    display: none;
 }
+/* .mobile_nav {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+} */
 .menu_icon {
     height: 40px;
 }
 .mobile_nav label {
     margin-left: auto;
-    margin-right: 3vw;
+    margin-right: 2vw;
     display: none;
 }
 .input_check {
@@ -211,7 +229,9 @@
 }
 .menu_nav {
     display: flex;
+    flex-direction: row;
     align-items: flex-end;
+    justify-content: space-between;
     width: 100%;
 }
 .menu_nav p {
@@ -220,56 +240,24 @@
 }
 .menu_nav a {
     display: block;
+    font-family: 'Oswald';
     font-size: 1rem;
-    font-weight: normal;
+    /* font-weight: normal; */
+    font-weight: bold;
     line-height: 1.4rem;
     color: #ffffff;
     padding: 0.3rem 0.5rem;
     text-align: left;
-    /* min-width: 70px; */
-    /* border-right: solid rgb(236, 235, 235) 1px; */
     box-sizing: border-box;
 }
 .menu_nav a:hover {
-    background-color: #d6d6d6;
+    background-color: rgba(255, 255, 255, 0.466);
     color: rgb(0, 6, 32);
+    transition: all 0.4s;
 }
-#check_menu:checked ~ .menu_nav {
-    flex-direction: column;
-    max-height: 100%;
-    transform-origin: top;
-    transform: scaleY(1);
-    transition: all 0.5s;
-    max-width: 240px;
-    overflow: hidden;
-    position: absolute;
-    top: 80px; /* должна быть равна высоте mobile_nav */
-    right: 5vw;
-}
-#check_menu:checked ~ .menu_nav a {
-    font-size: 1rem;
-    line-height: 1.4rem;
-    padding: 0.3rem 0 0.3rem 1rem;
-    text-align: unset;
-    min-width: unset;
-    border-right: unset;
-    box-sizing: unset;
-}
-
-#check_menu:checked ~ .menu_nav a:last-of-type {
-    margin: 0;
-}
-#check_menu:checked ~ .menu_section_home {
-    display: flex;
-    flex-direction: column;
-}
-#check_menu:checked ~ .menu_section_zero {
-    display: flex;
-    flex-direction: column;
-}
-#check_menu:checked ~ .menu_section_two {
-    display: flex;
-    flex-direction: column;
+.menu_section_home a:hover {
+    transform-origin: 50% 100%;
+    transform: scale(1.2);
 }
 
 .menu_section_zero {
@@ -280,6 +268,7 @@
 }
 .menu_section_one {
     opacity: 0.9;
+    font-family: 'Hind';
 }
 .menu_section_one p {
     font-size: 1.4rem;
@@ -289,9 +278,28 @@
 }
 .menu_section_two {
     display: flex;
+    flex-direction: row;
     width: 100%;
     max-width: 600px;
     justify-content: space-between;
+}
+
+#check_menu:checked ~ .menu_nav {
+    display: flex;
+    flex-direction: column;
+}
+#check_menu:checked ~ .menu_nav .menu_section_home {
+    display: flex;
+    flex-direction: column;
+}
+/* #check_menu:checked ~ .menu_nav .menu_section_zero .menu_section_one {
+    display: flex;
+    flex-direction: column;
+} */
+#check_menu:checked ~ .menu_nav .menu_section_zero .menu_section_two {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .menu_nav_second {
@@ -315,12 +323,12 @@
         color: white;
     }
 @media (min-width: 732px) and (max-width: 1259px) {
-    .frame_main, .scene_1, .top {
+    .frame_main {
     width: 96vw;
     }
 }
-@media (max-width: 731px) {
-    .frame_main, .scene_1, .top {
+@media (min-width: 420px) and (max-width: 731px) {
+    .frame_main {
     width: 95vw;
     }
     /* .menu_nav {
@@ -328,7 +336,14 @@
     transform: scaleY(0);
     } */
 }
+@media (max-width: 419px) {
+    .frame_main {
+    width: 94vw;
+    }
+}
 /* верхнее меню (конец)*/
+
+
 
 /* .frame_middle {
     display: flex;
@@ -347,14 +362,16 @@
 }
 
 .footer {
+    display: flex;
     flex-shrink: 0;
     background-color: #054175;
     width: 97vw;
     margin: 0 auto;
-    min-width: 360px;
+    max-width: inherit;
 }
 
 .footer_text {
+    width: inherit;
     text-align: left;
     font-size: 16px;
     color: white;
@@ -383,9 +400,14 @@
     }
 }
 
-@media (max-width: 731px) {
-    .menu_section_home, .menu_section_zero {
-        display: none;
+@media (min-width: 420px) and (max-width: 731px) {
+    .menu_section_home, .menu_section_one, .menu_section_two {
+    display: none;
+    }
+    .mobile_nav {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
     }
     .mobile_nav label {
     display: unset;
@@ -396,6 +418,178 @@
     .frame_menu_side {
         display: none;
     }
+    .main_search {
+    height: 20px;
+    margin: 2px;
+    }
+}
+@media (max-width: 419px) {
+    .menu_section_home, .menu_section_one, .menu_section_two {
+    display: none;
+    }
+    .mobile_nav {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    }
+    .mobile_nav label {
+    display: unset;
+    }
+    .footer {
+    width: 94vw;
+    }
+    .frame_menu_side {
+    display: none;
+    }
+    .main_search {
+    height: 20px;
+    margin: 2px;
+    }
+    /* .main_search input {
+    width: 100px;
+    justify-content: flex-end;
+    } */
 }
 
+/* анимация логотипа (начало) */
+@keyframes ticker {
+    0% {
+        transform: translateY(7vw);
+    }
+    100% {
+        transform: translateY(-7vw);
+    }
+}
+@keyframes circle {
+    from {
+        transform: rotate(0) translateY(-10vw) rotate(0);
+    }
+    to {
+        transform: rotate(360deg) translateY(-10vw) rotate(-360deg);
+    }
+}
+@keyframes scale {
+    to {
+        transform: scale(1.2);
+    }
+}
+.atom {
+    position: relative;
+    transform-origin: 50% 50%;
+    width: 20vw;
+    height: 20vw;
+    margin: 0 1vw 0.5vh 0;
+    float: left;
+}
+.e_path {
+    position: absolute;
+    top: 7vw;
+    transform-origin: 50% 50%;
+    width: 20vw;
+    height: 6vw;
+    border-radius: 10vw / 3vw;
+    border: 1px solid black;
+}
+.e_angle30 {
+    transform: rotate(30deg);
+}
+    .e_angle30 p {
+        transform: rotate(-30deg) translateX(0.2vw);
+    }
+.e_angle90 {
+    transform: rotate(90deg);
+}
+    .e_angle90 p {
+        transform: rotate(-90deg) translateX(0.1vw) translateY(-0.1vw);
+    }
+.e_angle150 {
+    transform: rotate(150deg);
+}
+    .e_angle150 p {
+        transform: rotate(-150deg) translateX(0.2vw) translateY(-0.2vw);
+    }
 
+.ticker {
+    position: absolute;
+    transform-origin: 50% 50%;
+    width: 4vw;
+    height: 4vw;
+    margin: 1vw 8vw;
+    animation: ticker infinite 4s alternate ease-in-out both;
+}
+.electron {
+    position: absolute;
+    transform-origin: 50% 50%;
+    top: 1.6vw;
+    left: 1.6vw;
+    z-index: 2;
+    width: 1.2vw;
+    height: 1.2vw;
+    border-radius: 50%;
+    background: radial-gradient(white, rgb(1, 1, 59));
+    animation: circle infinite 8s linear both;
+}
+.spin {
+    animation: circle infinite 8s linear both reverse;
+}
+.electron p {
+    position: absolute;
+    transform-origin: 50% 50%;
+    /* transform: rotate(-30deg) translateX(0.2vw); */
+    margin: 0;
+    padding: 0;
+    font-size: 1.2vw;
+    line-height: 1vw;
+}
+.nuclear {
+    position: absolute;
+    top: 7.5vw;
+    left: 7.5vw;
+    width: 5vw;
+    height: 5vw;
+    transform-origin: 50% 50%;
+    animation: scale infinite 4s alternate ease-in-out both;
+}
+.proton {
+    position: absolute;
+    width: 3vw;
+    height: 3vw;
+    border-radius: 50%;
+    transform-origin: 2.5vw 2.5vw;
+}
+.neutron {
+    position: absolute;
+    width: 2.5vw;
+    height: 2.5vw;
+    border-radius: 50%;
+    transform-origin: 2.5vw 2.5vw;
+}
+.move_s1 {
+    transform: rotate(45deg);
+    background: radial-gradient(at 1.3vw 1vw, rgba(252, 229, 229, 1), rgba(165, 0, 0, 1), rgba(165, 0, 0, 0.6));
+}
+.move_s2 {
+    transform: rotate(-90deg);
+    background: radial-gradient(at 2vw 1.5vw, rgba(252, 229, 229, 1), rgba(165, 0, 0, 1), rgba(165, 0, 0, 0.6));
+}
+.move_s3 {
+      transform: rotate(180deg);
+      background: radial-gradient(at 0.8vw 2vw, rgba(252, 229, 229, 1), rgba(165, 0, 0, 1), rgba(165, 0, 0, 0.6));
+}
+.move_s4 {
+    transform: rotate(100deg);
+    background: radial-gradient(at 1vw 1vw, rgba(252, 229, 229, 1), rgb(7, 12, 82), rgba(1, 5, 68, 0.205));
+}
+.move_s5 {
+      transform: rotate(225deg);
+      background: radial-gradient(at 1vw 1.5vw, rgba(252, 229, 229, 1), rgb(7, 12, 82), rgba(1, 5, 68, 0.205));
+}
+.move_s6 {
+      transform: rotate(-10deg);
+      background: radial-gradient(at 1.5vw 1vw, rgba(252, 229, 229, 1), rgb(7, 12, 82), rgba(1, 5, 68, 0.205));
+}
+.move_s7 {
+    transform: translateX(1.25vw) translateY(1.25vw);
+    background: radial-gradient(at 1.5vw 1vw, rgba(252, 229, 229, 1), rgb(7, 12, 82), rgba(1, 5, 68, 0.205));
+}
+/* анимация логотипа (конец) */
